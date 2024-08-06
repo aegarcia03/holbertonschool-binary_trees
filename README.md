@@ -163,7 +163,7 @@ Write a function that finds the uncle of a node
 * If node is NULL, return NULL
 * If node has no uncle, return NULL
 
-##Authors
+## Authors
 
 * Angela Enriquez
 * David Zajicek
