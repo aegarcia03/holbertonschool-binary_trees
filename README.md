@@ -10,6 +10,7 @@ This group project from Holberton School explores the following concepts:
 
 ## Files
 * binary_trees.h: header file, with the prototypes of all the functions.
+* binary_tree_print.c : Functions to print binary trees in a pretty way.
 
 ## Tasks
 
