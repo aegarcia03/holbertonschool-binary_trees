@@ -13,7 +13,7 @@ void recursive_balance(const binary_tree_t *node, int *count)
 		(*count)++;
 		recursive_balance(node->left, count);
 	}
-	if (node->right != NULL)
+	else if (node->right != NULL)
 	{
 		(*count)++;
 		recursive_balance(node->right, count);
