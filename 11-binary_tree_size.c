@@ -12,7 +12,7 @@ void recursive_count(const binary_tree_t *node, size_t *count)
 		recursive_count(node->left, count);
 	if (node->right != NULL)
 		recursive_count(node->right, count);
-	*count++;
+	count = count + 1;
 }
 
 /**
