@@ -3,15 +3,16 @@
 /**
  * recursive_left - walk the tree, left first
  * @node: node to check
- * Return: value from node
+ * @func: function pointer to call for each node
+ * Return: void
  */
-int recursive_left(const binary_tree_t *node)
+void recursive_left(const binary_tree_t *node, void (*func)(int))
 {
 	if (node->left != NULL)
 		return (recursive_left(node->left));
 	if (node->right != NULL)
 		return (recursive_left(node->right));
-	return (node->n);
+	func(node->n);
 }
 
 /**
@@ -28,5 +29,5 @@ void binary_tree_postorder(const binary_tree_t *tree, void (*func)(int))
 		return;
 	position = tree;
 
-	func(recursive_left(position));
+	recursive_left(position, func);
 }
