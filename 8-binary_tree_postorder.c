@@ -9,9 +9,9 @@
 void recursive_left(const binary_tree_t *node, void (*func)(int))
 {
 	if (node->left != NULL)
-		return (recursive_left(node->left));
+		recursive_left(node->left, func);
 	if (node->right != NULL)
-		return (recursive_left(node->right));
+		recursive_left(node->right, func);
 	func(node->n);
 }
 
