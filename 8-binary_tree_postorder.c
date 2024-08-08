@@ -23,7 +23,6 @@ int recursive_left(const binary_tree_t *node)
 void binary_tree_postorder(const binary_tree_t *tree, void (*func)(int))
 {
 	const binary_tree_t *position;
-	int leaf_found = 0;
 
 	if (tree == NULL || func == NULL)
 		return;
