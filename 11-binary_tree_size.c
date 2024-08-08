@@ -9,9 +9,9 @@
 size_t recursive_count(const binary_tree_t *node, size_t count)
 {
 	if (node->left != NULL)
-		recursive_count(node->left, count);
+		recursive_count(node->left, count + 1);
 	if (node->right != NULL)
-		recursive_count(node->right, count);
+		recursive_count(node->right, count + 1);
 	return (count + 1);
 }
 
