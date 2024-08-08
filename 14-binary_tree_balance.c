@@ -28,23 +28,20 @@ void recursive_balance(const binary_tree_t *node, int *count)
 int binary_tree_balance(const binary_tree_t *tree)
 {
 	int left = 0, right = 0;
-	const binary_tree_t *node;
 
 	if (tree == NULL)
 		return (0);
 
-	node = tree;
-	while (node->left != NULL)
+	if (tree->left != NULL)
 	{
 		left++;
-		recursive_balance(node->left, &left);
+		recursive_balance(tree->left, &left);
 	}
 
-	node = tree;
-	while (node->right != NULL)
+	if (tree->right != NULL)
 	{
 		right++;
-		recursive_balance(node->right, &right);
+		recursive_balance(tree->right, &right);
 	}
 	return (left - right);
 }
