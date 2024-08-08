@@ -1,64 +1,49 @@
 #include "binary_trees.h"
-#include <stdlib.h>
-#include <stdio.h>
-/**
- * find_depth - helper function to find the depth
- * @tree: pointer of the tree
- *
- * Return: depth
- */
-int find_depth(const binary_tree_t *tree)
-{
-	int depth = 0;
 
-	while (tree != NULL)
-	{
-		depth++;
-		tree = tree->left;
-	}
-	return (depth);
-}
 /**
- * isperfect - helper function that checks if the binary tree is perfect
- * @tree: pointer to a tree
- * @d: depth of a tree
- * @level: level of a tree
- *
- * Return: 1 if the tree is perfect, 0 otherwise
+ * recursive_balance - balance recursively
+ * @node: node
+ * @count: pointer to counter
+ * Return: void
  */
-int isperfect(const binary_tree_t *tree, int d, int level)
+void recursive_balance(const binary_tree_t *node, int *count)
 {
-	if (tree == NULL)
+	if (node->left != NULL)
 	{
-		return (0);
+		(*count)++;
+		recursive_balance(node->left, count);
 	}
-	if (tree->left == NULL && tree->right == NULL)
+	if (node->right != NULL)
 	{
-		d = level;
-		return (d + 1);
+		(*count)++;
+		recursive_balance(node->right, count);
 	}
-	if (tree->left == NULL || tree->right == NULL)
-	{
-		return (0);
-	}
-	return ((isperfect(tree->left, d, level + 1)) &&
-			(isperfect(tree->right, d, level + 1)));
 }
 
 /**
- * binary_tree_is_perfect - checks if a binary tree is perfect
- * @tree: pointer to a tree
- *
- * Return: 0 If tree is NULL
+ * binary_tree_is_perfect - measure the balance of a binary tree
+ * @tree: root node of tree to measure
+ * Return: balance
  */
 int binary_tree_is_perfect(const binary_tree_t *tree)
 {
-	int d;
-
-	d = find_depth(tree);
+	int left = 0, right = 0;
 
 	if (tree == NULL)
 		return (0);
-	else
-		return (isperfect(tree, d, 0));
+
+	if (tree->left != NULL)
+	{
+		left++;
+		recursive_balance(tree->left, &left);
+	}
+
+	if (tree->right != NULL)
+	{
+		right++;
+		recursive_balance(tree->right, &right);
+	}
+	if (right == left)
+		return (1);
+	return (0);
 }
