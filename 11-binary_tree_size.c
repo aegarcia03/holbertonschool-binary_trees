@@ -3,15 +3,16 @@
 /**
  * recursive_count - count nodes recursively
  * @node: node to count
+ * @count: count
  * Return: void
  */
-size_t recursive_count(const binary_tree_t *node)
+size_t recursive_count(const binary_tree_t *node, size_t count)
 {
 	if (node->left != NULL)
-		recursive_count(node->left);
+		recursive_count(node->left, count);
 	if (node->right != NULL)
-		recursive_count(node->right);
-	return (1);
+		recursive_count(node->right, count);
+	return (count + 1);
 }
 
 /**
@@ -25,6 +26,6 @@ size_t binary_tree_size(const binary_tree_t *tree)
 
 	if (tree == NULL)
 		return (size);
-	size = recursive_count(tree);
+	size = recursive_count(tree, size);
 	return (size);
 }
