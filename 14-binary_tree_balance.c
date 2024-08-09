@@ -1,25 +1,27 @@
 #include "binary_trees.h"
-
 /**
- * recursive_balance - balance recursively
- * @node: node
- * @count: pointer to counter
- * Return: void
+ * binary_tree_height -  measures the height of a binary tree
+ * @tree: pointer to the root of the tree.
+ *
+ * Return: height of the tree
+ * If tree is NULL, return 0
  */
-void recursive_balance(const binary_tree_t *node, int *count)
+size_t binary_tree_height(const binary_tree_t *tree)
 {
-	if (node->left != NULL)
-	{
-		(*count)++;
-		recursive_balance(node->left, count);
-	}
-	else if (node->right != NULL)
-	{
-		(*count)++;
-		recursive_balance(node->right, count);
-	}
-}
+	size_t l = 0;
+	size_t r = 0;
 
+	if (tree == NULL)
+		return (0);
+
+	if (tree->left)
+		l = binary_tree_height(tree->left);
+	if (tree->right)
+		r = binary_tree_height(tree->right);
+
+
+	return ((l > r ? l : r)+ 1);
+}
 /**
  * binary_tree_balance - measure the balance of a binary tree
  * @tree: root node of tree to measure
@@ -27,21 +29,13 @@ void recursive_balance(const binary_tree_t *node, int *count)
  */
 int binary_tree_balance(const binary_tree_t *tree)
 {
-	int left = 0, right = 0;
+	int left_height = 0, right_height = 0;
 
 	if (tree == NULL)
 		return (0);
+	
+	left_height = binary_tree_height(tree->left);
+	right_height = binary_tree_height(tree->right);
 
-	if (tree->left != NULL)
-	{
-		left++;
-		recursive_balance(tree->left, &left);
-	}
-
-	if (tree->right != NULL)
-	{
-		right++;
-		recursive_balance(tree->right, &right);
-	}
-	return (left - right);
+	return (left_height - right_height);
 }
